@@ -9,7 +9,7 @@ import {
 import '../styles/App.css';
 import Navbar from './Navbar';
 import Home from './Home'
-
+import Comments from './Comments'
 
 
 
@@ -23,8 +23,8 @@ function App(){
       <Navbar />
       <Switch>
         <Route exact path="/"><Home/></Route>
-        <Route path="/bios">
-
+        <Route path="/comments">
+        <Comments video="watchid" top={true}/>
         </Route>
         <Route exact path="/create-bio">
 
