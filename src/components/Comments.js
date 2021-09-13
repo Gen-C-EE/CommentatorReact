@@ -10,16 +10,16 @@ const Comments = (props) => {
     useEffect(() => {
         if(props.top){
             getTopComments(props.video)
-            .then(cmts => {/*console.log(cmts.list);*/ setComments(cmts); })
+            .then(cmts => {console.log(cmts); setComments(cmts); })
             .catch(error => console.log(error));
-            
         }
+
         else{
             getReplies(props.video)
             .then(cmts => {/*console.log(cmts.list);*/ setComments(cmts); })
             .catch(error => console.log(error));
         }
-    }, [setComments]);
+    }, [setComments,props]);
 
 
 

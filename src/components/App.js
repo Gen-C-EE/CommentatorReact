@@ -10,6 +10,7 @@ import '../styles/App.css';
 import Navbar from './Navbar';
 import Home from './Home'
 import Comments from './Comments'
+import VideoPage from './VideoPage'
 
 
 
@@ -24,13 +25,13 @@ function App(){
       <Switch>
         <Route exact path="/"><Home/></Route>
         <Route path="/comments">
-        <Comments video="watchid" top={true}/>
+          <Comments video="rokGy0huYEA" top={true}/>
         </Route>
-        <Route exact path="/create-bio">
-
+        <Route path="/video/:watchId">
+          <VideoPage/>
         </Route>
       </Switch>
-    </Router>
+    </Router>//rokGy0huYEA
   );
 }
 
