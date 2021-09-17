@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const RegisterForm = ({ handleClose }) => {
+const LoginForm = ({ handleClose }) => {
   const classes = useStyles();
   // create state variables for each input
   const [username, setUsername] = useState('');
@@ -62,4 +62,4 @@ const RegisterForm = ({ handleClose }) => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

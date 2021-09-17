@@ -10,11 +10,11 @@ const VideoPage = (props) => {
     console.log(watchId)
     return (
         <div>
-        <Comments top={true} video={watchId}/>
         <div className="App">
-          <h1>Youtube Embed</h1>
+          <h1></h1>
           <YoutubeEmbed embedId={watchId} />
         </div>
+        <Comments top={true} video={watchId}/>
         </div>
       );
 }

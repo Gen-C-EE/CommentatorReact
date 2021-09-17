@@ -1,12 +1,20 @@
-//import TopComments from "topComments.json"
-//import Replies from "commentReplies.json"
-
 export const getTopComments = (videoId) => {
-    return fetch('data/topComments.json')
+    console.log("top hit")
+    return fetch(`${process.env.PUBLIC_URL}/data/topComments.json`,{
+        headers : { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         }
+      })
     .then( response => response.json());
-    //return TopComments.topComments;
 }
 
 export const getReplies = (parent) => {
-    return fetch('data/commentReplies.json')
-    .then( response => response.json());}
+    return fetch(`${process.env.PUBLIC_URL}/data/commentReplies.json`,{
+        headers : { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         }
+      })
+    .then( response => response.json());
+}

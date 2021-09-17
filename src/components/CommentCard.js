@@ -20,6 +20,7 @@ import { spacing } from '@material-ui/system';
 
 import Comment from '../entities/Comment'
 import Comments from './Comments'
+import AddCommentForm from './AddCommentForm'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,9 +53,14 @@ const useStyles = makeStyles((theme) => ({
 const CommentCard = (props) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [addComment, setAddComment] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleAddCommentClick = () => {
+    setAddComment(!addComment);
   };
 
   return (
@@ -70,7 +76,7 @@ const CommentCard = (props) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
+        title="User Name"
         subheader={props.comment.timestamp}
       />
       <CardContent>
@@ -82,7 +88,9 @@ const CommentCard = (props) => {
         {/*<IconButton aria-label="add to favorites">
           <FavoriteIcon />
       </IconButton>*/}
-        <IconButton aria-label="addcomment">
+        <IconButton 
+        aria-label="addcomment"
+        onClick={handleAddCommentClick}>
           <InsertCommentIcon />
         </IconButton>
         <IconButton
@@ -98,6 +106,11 @@ const CommentCard = (props) => {
           />
         </IconButton>
       </CardActions>
+      <Collapse in={addComment} timeout="auto" unmountOnExit>
+        <CardContent>
+          <AddCommentForm/>
+        </CardContent>
+      </Collapse>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent className={classes.cardcontent}>
           <Comments video="watchid2" top={false}/>

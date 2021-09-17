@@ -8,7 +8,6 @@ const ModalDialog = ({ open, handleClose }) => {
     // props received from App.js
     <Dialog open={open} onClose={handleClose}>
       <RegisterForm handleClose={handleClose} />
-      Button 
     </Dialog>
   );
 };
