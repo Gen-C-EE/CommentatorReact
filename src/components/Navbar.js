@@ -8,6 +8,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import ModalDialog from './ModalDialog';
+import { useAuth0 } from "@auth0/auth0-react";
+import AuthenticationButton from './AuthenticationButton';
+
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
@@ -30,6 +33,8 @@ const Navbar = () => {
     setOpen(false);
   };
 
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -42,11 +47,9 @@ const Navbar = () => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
-          Title
+          Commentator
         </Typography>
-        <Button color="inherit" onClick={handleOpen}>
-          Signup
-        </Button>
+        <AuthenticationButton/>
       </Toolbar>
       <ModalDialog open={open} handleClose={handleClose} />
     </AppBar>

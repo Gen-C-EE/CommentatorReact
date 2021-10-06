@@ -1,0 +1,143 @@
+[
+    {
+        "id": 1,
+        "author": null,
+        "text": "test comment text",
+        "replies": [],
+        "timestamp": "testTimeStamp",
+        "top": true
+    },
+    {
+        "id": 2,
+        "author": null,
+        "text": "test comment text",
+        "replies": [],
+        "timestamp": "testTimeStamp",
+        "top": true
+    },
+    {
+        "id": 3,
+        "author": null,
+        "text": "test comment text",
+        "replies": [
+            {
+                "id": 4,
+                "author": null,
+                "text": "test comment text",
+                "replies": [],
+                "timestamp": "testTimeStamp",
+                "top": false
+            },
+            {
+                "id": 5,
+                "author": null,
+                "text": "test comment text",
+                "replies": [
+                    {
+                        "id": 7,
+                        "author": null,
+                        "text": "test comment text",
+                        "replies": [
+                            {
+                                "id": 10,
+                                "author": null,
+                                "text": "test comment text",
+                                "replies": [],
+                                "timestamp": "testTimeStamp",
+                                "top": false
+                            },
+                            {
+                                "id": 11,
+                                "author": null,
+                                "text": "test comment text",
+                                "replies": [
+                                    {
+                                        "id": 13,
+                                        "author": null,
+                                        "text": "test comment text",
+                                        "replies": [
+                                            {
+                                                "id": 15,
+                                                "author": null,
+                                                "text": "test comment text",
+                                                "replies": [],
+                                                "timestamp": "testTimeStamp",
+                                                "top": false
+                                            },
+                                            {
+                                                "id": 16,
+                                                "author": null,
+                                                "text": "test comment text",
+                                                "replies": [],
+                                                "timestamp": "testTimeStamp",
+                                                "top": false
+                                            },
+                                            {
+                                                "id": 17,
+                                                "author": null,
+                                                "text": "test comment text",
+                                                "replies": [],
+                                                "timestamp": "testTimeStamp",
+                                                "top": false
+                                            }
+                                        ],
+                                        "timestamp": "testTimeStamp",
+                                        "top": false
+                                    },
+                                    {
+                                        "id": 14,
+                                        "author": null,
+                                        "text": "test comment text",
+                                        "replies": [],
+                                        "timestamp": "testTimeStamp",
+                                        "top": false
+                                    }
+                                ],
+                                "timestamp": "testTimeStamp",
+                                "top": false
+                            },
+                            {
+                                "id": 12,
+                                "author": null,
+                                "text": "test comment text",
+                                "replies": [],
+                                "timestamp": "testTimeStamp",
+                                "top": false
+                            }
+                        ],
+                        "timestamp": "testTimeStamp",
+                        "top": false
+                    },
+                    {
+                        "id": 8,
+                        "author": null,
+                        "text": "test comment text",
+                        "replies": [],
+                        "timestamp": "testTimeStamp",
+                        "top": false
+                    },
+                    {
+                        "id": 9,
+                        "author": null,
+                        "text": "test comment text",
+                        "replies": [],
+                        "timestamp": "testTimeStamp",
+                        "top": false
+                    }
+                ],
+                "timestamp": "testTimeStamp",
+                "top": false
+            },
+            {
+                "id": 6,
+                "author": null,
+                "text": "test comment text",
+                "replies": [],
+                "timestamp": "testTimeStamp",
+                "top": false
+            }
+        ],
+        "timestamp": "testTimeStamp",
+        "top": true
+    }
+]

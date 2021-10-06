@@ -1,5 +1,5 @@
 class Comment{
-    constructor(id, author, text, timestamp, parent, video, replies){
+    constructor(id, author, text, timestamp, parent, video, replies,top){
         this.id = id;
         this.author = author;
         this.text = text;
@@ -7,6 +7,7 @@ class Comment{
         this.parent = parent;
         this.video = video;
         this.replies = replies;
+        this.top=top;
     }
 }
 

@@ -16,11 +16,17 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { spacing } from '@material-ui/system';
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
 
 
 import Comment from '../entities/Comment'
 import Comments from './Comments'
 import AddCommentForm from './AddCommentForm'
+
+TimeAgo.addDefaultLocale(en)
+const timeAgo = new TimeAgo('en-US')
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,10 +53,14 @@ const useStyles = makeStyles((theme) => ({
   },
   cardcontent: {
     paddingRight : 0.5
+  },
+  hidden: {
+    display: "none"
   }
+
 }));
 
-const CommentCard = (props) => {
+const CommentCard = ({comment,rerenderCallback,video}) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [addComment, setAddComment] = React.useState(false);
@@ -62,6 +72,11 @@ const CommentCard = (props) => {
   const handleAddCommentClick = () => {
     setAddComment(!addComment);
   };
+
+  const handleNewComment = () => {
+    setAddComment(false);
+    setExpanded(true);
+  }
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -77,11 +92,12 @@ const CommentCard = (props) => {
           </IconButton>
         }
         title="User Name"
-        subheader={props.comment.timestamp}
+        subheader={timeAgo.format(new Date(comment.timestamp))}
+        //{comment.timestamp}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.comment.text}
+          {comment.text}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -94,11 +110,11 @@ const CommentCard = (props) => {
           <InsertCommentIcon />
         </IconButton>
         <IconButton
-          className={classes.iconbtn}
+          className={comment.replies.length<1 ? clsx(classes.hidden,classes.iconbtn) : classes.iconbtn}
           onClick={handleExpandClick}
           aria-expanded={expanded}
         >
-          <div className={classes.expandbtn}>{props.comment.replies.length} replies</div>
+          <div className={classes.expandbtn}>{comment.replies.length} {comment.replies.length==1? "reply" : "replies"}</div>
           <ExpandMoreIcon
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded
@@ -108,12 +124,12 @@ const CommentCard = (props) => {
       </CardActions>
       <Collapse in={addComment} timeout="auto" unmountOnExit>
         <CardContent>
-          <AddCommentForm/>
+          <AddCommentForm parent={comment.id} video={video} top={false}rerenderCallback={rerenderCallback} toggleForm={handleNewComment}/>
         </CardContent>
       </Collapse>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent className={classes.cardcontent}>
-          <Comments video="watchid2" top={false}/>
+          <Comments video={video} top={false} replies={comment.replies} rerenderCallback={rerenderCallback} />
         </CardContent>
       </Collapse>
     </Card>

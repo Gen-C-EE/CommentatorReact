@@ -4,6 +4,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 import '../styles/App.css';
@@ -18,6 +19,13 @@ import VideoPage from './VideoPage'
 function App(){
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const { isLoading } = useAuth0();
+
+  //if (isLoading) {
+  //  return <Loading />;
+ // }
+
 
   return (
     <Router>

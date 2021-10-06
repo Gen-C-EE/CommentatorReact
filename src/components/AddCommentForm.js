@@ -6,6 +6,9 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
+import { postComment } from '../apis/commentApi';
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,13 +29,30 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const AddCommentForm = () => {
+const AddCommentForm = ({parent,top,video,rerenderCallback,toggleForm}) => {
     const classes = useStyles();
     const [text, setText] = useState('');
+    const { user } = useAuth0();
+    console.log(user ? user['https://namespace.com/username'] : "none")
 
     const handleSubmit = e => {
       e.preventDefault();
-      console.log(text);
+      //console.log("test");
+      var timestamp=new Date().toISOString().slice(0, 19).replace('T', ' ')+" UTC";
+      var newComment = {
+        id: null,
+        author: null,
+        text: text,
+        timestamp: timestamp, 
+        parent: parent ? {id : parent} : null, 
+        video: {watchID: video},
+        replies:null,
+        top: top,
+      }
+      postComment(newComment);
+      rerenderCallback();
+      setText('');
+      toggleForm();
     };
 
     return (
@@ -47,10 +67,12 @@ const AddCommentForm = () => {
             label="New Comment"
             required
             value={text}
-            onChange={e => setText(e.target.value)}
+            onChange={e => setText(e.target.value)
+            }
+            inputProps={{ "data-testid": "commentText" }}
           />
           <CardActions disableSpacing>
-               <Button classname={classes.submit} size="small" type="submit">Submit</Button>
+               <Button className={classes.submit} size="small" type="submit">Submit</Button>
             </CardActions>
         </form>
       </CardContent>
