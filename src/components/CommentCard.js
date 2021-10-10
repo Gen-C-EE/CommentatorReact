@@ -10,7 +10,6 @@ import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
 import InsertCommentIcon from '@material-ui/icons/InsertComment';
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -18,14 +17,40 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { spacing } from '@material-ui/system';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
+import { useAuth0 } from "@auth0/auth0-react";
+import {
+  red,
+  pink,
+  purple,
+  deepPurple,
+  indigo,
+  blue,
+  lightBlue,
+  cyan,
+  teal,
+  green,
+  lightGreen,
+  lime,
+  yellow,
+  amber,
+  orange,
+  deepOrange,
+  brown,
+  grey,
+  blueGrey
+} from "@material-ui/core/colors";
 
 
 import Comment from '../entities/Comment'
 import Comments from './Comments'
 import AddCommentForm from './AddCommentForm'
 
+var chancer = require('chancer');
+
+
 TimeAgo.addDefaultLocale(en)
 const timeAgo = new TimeAgo('en-US')
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,9 +67,6 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: "rotate(180deg)"
   },
-  avatar: {
-    backgroundColor: red[500]
-  },
   expandbtn: {
     fontSize: 15
   },
@@ -60,10 +82,65 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+const hueArray = [
+  red,
+  pink,
+  purple,
+  deepPurple,
+  indigo,
+  blue,
+  lightBlue,
+  cyan,
+  teal,
+  green,
+  lightGreen,
+  lime,
+  yellow,
+  amber,
+  orange,
+  deepOrange,
+  brown,
+  grey,
+  blueGrey
+];
+
+const shadeArray = [
+//  "100",
+//  "200",
+//  "300",
+//  "400",
+  "500",
+  "600",
+  "700",
+  "800",
+  "900",
+  "A100",
+  "A200",
+  "A400",
+  "A700"
+];
+
+const hash = (s) => {
+  for(var i = 0, h = 0; i < s.length; i++)
+      h = Math.imul(31, h) + s.charCodeAt(i) | 0;
+  return h;
+}
+
+
+
 const CommentCard = ({comment,rerenderCallback,video}) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [addComment, setAddComment] = React.useState(false);
+  const { user } = useAuth0();
+  //const username = user['https://namespace.com/username'];
+ 
+  chancer.seed(hash(comment.author));
+  const avatarHue = chancer.fromArray(hueArray);
+  const avatarShade = chancer.fromArray(shadeArray);
+  console.log(avatarHue)
+  console.log(avatarShade)
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -82,8 +159,10 @@ const CommentCard = ({comment,rerenderCallback,video}) => {
     <Card className={classes.root} variant="outlined">
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+          <Avatar style={{
+            backgroundColor: avatarHue[avatarShade]
+          }}>
+            {comment.author.toUpperCase().charAt(0)}
           </Avatar>
         }
         action={
@@ -91,7 +170,7 @@ const CommentCard = ({comment,rerenderCallback,video}) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title="User Name"
+        title={comment.author}
         subheader={timeAgo.format(new Date(comment.timestamp))}
         //{comment.timestamp}
       />

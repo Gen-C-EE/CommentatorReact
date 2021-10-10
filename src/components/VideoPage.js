@@ -1,4 +1,4 @@
-import {useReducer,useEffect} from "react";
+import {useReducer,useEffect,useState} from "react";
 import "../styles/YoutubeEmbed.css";
 import YoutubeEmbed from "./YoutubeEmbed";
 import Comments from "./Comments"
@@ -9,19 +9,22 @@ import { postVideo } from '../apis/videoApi';
 
 
 const VideoPage = (props) => {
+    const [isLoading, setLoading] = useState(false);
     const {watchId} = useParams()
     const [_, forceUpdate] = useReducer((x) => x + 1, 0);
     var rerenderParentCallback = () => {
-      console.log("rerender");
+      //console.log("rerender");
       forceUpdate();
     };
 
-    useEffect(() => {
-      console.log("UseEffect() video");
-      postVideo(watchId);
-  }, [/*forceUpdate*/]);
+    var comments = isLoading ? "Loading Comments" : <Comments top={true} video={watchId} rerenderCallback={rerenderParentCallback}/>;
 
-    console.log(watchId)
+    useEffect(() => {
+      //console.log("UseEffect() video");
+      postVideo(watchId);
+  }, [isLoading]);
+
+    //console.log(watchId)
     return (
         <div>
         <div className="App">
@@ -29,7 +32,8 @@ const VideoPage = (props) => {
           <YoutubeEmbed embedId={watchId} />
         </div>
         <AddCommentForm parent={null} video={watchId} top={true} rerenderCallback={rerenderParentCallback} toggleForm={()=>{}}/>
-        <Comments top={true} video={watchId} rerenderCallback={rerenderParentCallback}/>
+        
+        {comments}
         </div>
       );
 }

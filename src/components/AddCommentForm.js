@@ -33,7 +33,7 @@ const AddCommentForm = ({parent,top,video,rerenderCallback,toggleForm}) => {
     const classes = useStyles();
     const [text, setText] = useState('');
     const { user } = useAuth0();
-    console.log(user ? user['https://namespace.com/username'] : "none")
+
 
     const handleSubmit = e => {
       e.preventDefault();
@@ -41,7 +41,7 @@ const AddCommentForm = ({parent,top,video,rerenderCallback,toggleForm}) => {
       var timestamp=new Date().toISOString().slice(0, 19).replace('T', ' ')+" UTC";
       var newComment = {
         id: null,
-        author: null,
+        author: user['https://namespace.com/username'],
         text: text,
         timestamp: timestamp, 
         parent: parent ? {id : parent} : null, 
@@ -55,6 +55,9 @@ const AddCommentForm = ({parent,top,video,rerenderCallback,toggleForm}) => {
       toggleForm();
     };
 
+    const { isAuthenticated } = useAuth0();
+
+
     return (
       <Card className={classes.root} variant="outlined">
       <CardContent className={classes.cardcontent}>
@@ -63,16 +66,18 @@ const AddCommentForm = ({parent,top,video,rerenderCallback,toggleForm}) => {
             multiline
             fullWidth
             rows={4}
-            variant="filled"
-            label="New Comment"
-            required
-            value={text}
-            onChange={e => setText(e.target.value)
+            variant={isAuthenticated ? "outlined" : "filled"}
+            helperText={isAuthenticated ? "" : top ? "Sign in to leave a comment" : "Sign in to reply"}
+            label="New Comment" 
+            required 
+            disabled = {!isAuthenticated} 
+            value={text} 
+            onChange={e => setText(e.target.value) 
             }
             inputProps={{ "data-testid": "commentText" }}
           />
           <CardActions disableSpacing>
-               <Button className={classes.submit} size="small" type="submit">Submit</Button>
+               <Button variant="contained" className={classes.submit} disabled = {!isAuthenticated} type="submit">Submit</Button>
             </CardActions>
         </form>
       </CardContent>
