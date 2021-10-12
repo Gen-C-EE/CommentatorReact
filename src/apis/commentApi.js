@@ -24,7 +24,7 @@ export const getReplies = (parent) => {
 
 export const getComments = (watchId) => {
     console.log(" getComments()")
-    return fetch(`http://${baseUrl}/videos/${watchId}/comments`,{
+    return fetch(`https://${baseUrl}/videos/${watchId}/comments`,{
     //return fetch(`${process.env.PUBLIC_URL}/data/comments.json`,{
         headers : { 
           'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export const postComment = (comment) => {
   //console.log(Object.keys(comment));
   //console.log(JSON.stringify(comment));
 
-  return fetch(`http://${baseUrl}/comments`,
+  return fetch(`https://${baseUrl}/comments`,
       {
           method: 'POST',
           body: JSON.stringify(comment),
@@ -51,7 +51,7 @@ export const editComment = (id,newText) => {
   //console.log(Object.keys(comment));
   //console.log(JSON.stringify(comment));
 
-  return fetch(`http://${baseUrl}/comments/${id}`,
+  return fetch(`https://${baseUrl}/comments/${id}`,
       {
           method: 'PATCH',
           body: newText,
@@ -64,7 +64,7 @@ export const deleteComment = (id) => {
   //console.log(Object.keys(comment));
   console.log("deleteComment API call");
 
-  return fetch(`http://${baseUrl}/comments/${id}/delete`,
+  return fetch(`https://${baseUrl}/comments/${id}/delete`,
       {
           method: 'PATCH',
           headers: {'Content-type':'application/json'}
