@@ -1,4 +1,4 @@
-const baseUrl="Commentatorspring-env.eba-8f3h3emw.us-east-2.elasticbeanstalk.com";
+const baseUrl="conor.ee-cognizantacademy.com";
 
 
 export const getTopComments = (videoId) => {

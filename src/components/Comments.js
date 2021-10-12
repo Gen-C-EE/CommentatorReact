@@ -12,7 +12,7 @@ const Comments = (props) => {
         if(props.top){
             setTimeout(() => getComments(props.video)
             .then(cmts => {/*console.log(cmts);*/ setComments(cmts); })
-            .catch(error => console.log(error)),1000);
+            .catch(error => console.log(error)),3000);
         }
 
         else{
