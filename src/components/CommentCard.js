@@ -44,6 +44,7 @@ import {
 import Comment from '../entities/Comment'
 import Comments from './Comments'
 import AddCommentForm from './AddCommentForm'
+import CommentPopover from './CommentPopover';
 
 var chancer = require('chancer');
 
@@ -100,7 +101,6 @@ const hueArray = [
   orange,
   deepOrange,
   brown,
-  grey,
   blueGrey
 ];
 
@@ -133,13 +133,13 @@ const CommentCard = ({comment,rerenderCallback,video}) => {
   const [expanded, setExpanded] = React.useState(false);
   const [addComment, setAddComment] = React.useState(false);
   const { user } = useAuth0();
-  //const username = user['https://namespace.com/username'];
+  const username = user ? user['https://namespace.com/username'] : "";
  
   chancer.seed(hash(comment.author));
   const avatarHue = chancer.fromArray(hueArray);
   const avatarShade = chancer.fromArray(shadeArray);
-  console.log(avatarHue)
-  console.log(avatarShade)
+  //console.log(avatarHue)
+  //console.log(avatarShade)
 
 
   const handleExpandClick = () => {
@@ -160,15 +160,14 @@ const CommentCard = ({comment,rerenderCallback,video}) => {
       <CardHeader
         avatar={
           <Avatar style={{
-            backgroundColor: avatarHue[avatarShade]
+            backgroundColor: comment.author==("[deleted]") ? grey[400] : avatarHue[avatarShade]
           }}>
-            {comment.author.toUpperCase().charAt(0)}
+            {comment.author==("[deleted]") ? "╳" : comment.author.toUpperCase().charAt(0)}
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          comment.author != username ? null :
+          <CommentPopover id={comment.id} rerenderCallback={rerenderCallback}/>
         }
         title={comment.author}
         subheader={timeAgo.format(new Date(comment.timestamp))}

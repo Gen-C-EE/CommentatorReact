@@ -10,9 +10,9 @@ const Comments = (props) => {
     useEffect(() => {
         console.log("UseEffect()")
         if(props.top){
-            getComments(props.video)
-            .then(cmts => {console.log(cmts); setComments(cmts); })
-            .catch(error => console.log(error));
+            setTimeout(() => getComments(props.video)
+            .then(cmts => {/*console.log(cmts);*/ setComments(cmts); })
+            .catch(error => console.log(error)),1000);
         }
 
         else{

@@ -1,6 +1,8 @@
+const baseUrl="Commentatorspring-env.eba-8f3h3emw.us-east-2.elasticbeanstalk.com";
+
 export const postVideo = (watchId) => {
     var newVideo = {watchID: watchId}
-    return fetch('http://localhost:8080/videos',
+    return fetch(`http://${baseUrl}/videos`,
         {
             method: 'POST',
             body: JSON.stringify(newVideo),
