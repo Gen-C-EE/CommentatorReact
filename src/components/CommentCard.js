@@ -138,7 +138,7 @@ const CommentCard = ({comment,rerenderCallback,video}) => {
   chancer.seed(hash(comment.author));
   const avatarHue = chancer.fromArray(hueArray);
   const avatarShade = chancer.fromArray(shadeArray);
-  //console.log(avatarHue)
+  console.log(comment)
   //console.log(avatarShade)
 
 
