@@ -139,6 +139,8 @@ const CommentCard = ({comment,rerenderCallback,video}) => {
   const avatarHue = chancer.fromArray(hueArray);
   const avatarShade = chancer.fromArray(shadeArray);
   console.log(comment)
+  const timestamp = comment.timestamp.split(' ');
+  const timestampFormated = `${timestamp[0]}T${timestamp[1]}.000Z`;
   //console.log(avatarShade)
 
 
@@ -170,7 +172,7 @@ const CommentCard = ({comment,rerenderCallback,video}) => {
           <CommentPopover id={comment.id} rerenderCallback={rerenderCallback}/>
         }
         title={comment.author}
-        subheader={timeAgo.format(new Date(comment.timestamp))}
+        subheader={timeAgo.format(Date.parse(timestampFormated))}
         //{comment.timestamp}
       />
       <CardContent>
