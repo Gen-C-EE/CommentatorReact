@@ -2,6 +2,8 @@ import React, { useEffect, useState, useReducer } from 'react';
 import { getComments, getReplies } from '../apis/commentApi';
 import AppContext from '../contexts';
 import CommentCard from './CommentCard'
+import { postVideo } from '../apis/videoApi';
+
 
 const Comments = (props) => {
 
@@ -10,6 +12,8 @@ const Comments = (props) => {
     useEffect(() => {
         console.log("UseEffect()")
         if(props.top){
+            await postVideo(props.video);
+
             setTimeout(() => getComments(props.video)
             .then(cmts => {/*console.log(cmts);*/ setComments(cmts); })
             .catch(error => console.log(error)),3000);

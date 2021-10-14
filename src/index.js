@@ -8,16 +8,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/core/styles";
 
-
-const theme = createMuiTheme({
-  palette: {
-    //primary: pink,
-    type: "dark"
-  }
-});
 
 ReactDOM.render(
   <Router>
