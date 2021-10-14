@@ -218,6 +218,6 @@ const CommentCard = ({comment,rerenderCallback,video}) => {
 
 export default CommentCard
 
-CommentCard.propTypes = {
-    comment: Comment
-}
+//CommentCard.propTypes = {
+//    comment: Comment
+//}
