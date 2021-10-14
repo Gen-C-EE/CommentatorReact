@@ -110,7 +110,6 @@ const Navbar = () => {
   };
 
   const { loginWithRedirect } = useAuth0();
-  console.log(watchId);
   return (
     <ThemeProvider theme={theme}>
     <AppBar position="static">

@@ -13,6 +13,7 @@ import NewNavbar from './NewNavbar'
 import Home from './Home'
 import Comments from './Comments'
 import VideoPage from './VideoPage'
+import ReactLoading from 'react-loading';
 
 
 
@@ -23,9 +24,9 @@ function App(){
 
   const { isLoading } = useAuth0();
 
-  //if (isLoading) {
-  //  return <Loading />;
- // }
+  if (isLoading) {
+    return <ReactLoading/>;
+  }
 
 
   return (

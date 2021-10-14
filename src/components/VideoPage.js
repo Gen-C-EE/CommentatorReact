@@ -17,7 +17,7 @@ const VideoPage = (props) => {
       forceUpdate();
     };
 
-    var comments = isLoading ? "Loading Comments" : <Comments top={true} video={watchId} rerenderCallback={rerenderParentCallback}/>;
+    var comments = isLoading ? <h1>"Loading Comments"</h1> : <Comments top={true} video={watchId} rerenderCallback={rerenderParentCallback}/>;
 
     useEffect(() => {
       //console.log("UseEffect() video");
