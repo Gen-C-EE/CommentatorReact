@@ -2,7 +2,7 @@ const baseUrl="conor.ee-cognizantacademy.com";
 
 
 export const getTopComments = (videoId) => {
-    console.log("top hit")
+    //console.log("top hit")
     return fetch(`${process.env.PUBLIC_URL}/data/topComments.json`,{
         headers : { 
           'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export const getReplies = (parent) => {
 }
 
 export const getComments = (watchId) => {
-    console.log(" getComments()")
+    //console.log(" getComments()")
     return fetch(`https://${baseUrl}/videos/${watchId}/comments`,{
     //return fetch(`${process.env.PUBLIC_URL}/data/comments.json`,{
         headers : { 
@@ -62,7 +62,7 @@ export const editComment = (id,newText) => {
 
 export const deleteComment = (id) => {
   //console.log(Object.keys(comment));
-  console.log("deleteComment API call");
+  //console.log("deleteComment API call");
 
   return fetch(`https://${baseUrl}/comments/${id}/delete`,
       {

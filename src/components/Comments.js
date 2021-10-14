@@ -12,7 +12,7 @@ const Comments = (props) => {
     useEffect( async () => {
         console.log("UseEffect()")
         if(props.top){
-            await postVideo(props.video);
+            postVideo(props.video);
 
             setTimeout(() => getComments(props.video)
             .then(cmts => {/*console.log(cmts);*/ setComments(cmts); })

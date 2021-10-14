@@ -93,6 +93,7 @@ const Navbar = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
+    setInput('');
     console.log(e.target.value);
     if(watchId=="") return false;
     let url = `/video/${watchId}`;
