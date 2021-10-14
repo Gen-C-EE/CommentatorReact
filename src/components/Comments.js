@@ -10,7 +10,7 @@ const Comments = (props) => {
     const [comments, setComments] = useState([]);//useContext(AppContext);
 
     useEffect( async () => {
-        console.log("UseEffect()")
+        //console.log("UseEffect()")
         if(props.top){
             postVideo(props.video);
 
