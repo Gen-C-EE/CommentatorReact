@@ -9,6 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import '../styles/App.css';
 import Navbar from './Navbar';
+import NewNavbar from './NewNavbar'
 import Home from './Home'
 import Comments from './Comments'
 import VideoPage from './VideoPage'
