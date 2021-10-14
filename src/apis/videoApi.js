@@ -1,6 +1,6 @@
 const baseUrl="conor.ee-cognizantacademy.com";
 
-export const postVideo = (watchId) => {
+export const  postVideo = async (watchId) => {
     var newVideo = {watchID: watchId}
     return fetch(`https://${baseUrl}/videos`,
         {
