@@ -42,6 +42,9 @@ const useStyles = makeStyles(theme => ({
   search: {
     marginLeft: 0,
     marginRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    width: "90%"
   },
 
   toolbar: theme.mixins.toolbar,
@@ -94,10 +97,10 @@ const Navbar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setInput('');
-    console.log(e.target.value);
+    //console.log(e.target.value);
     if(watchId=="") return false;
     let url = `/video/${watchId}`;
-    console.log(url);
+    //console.log(url);
     history.push(url);
   }
 
