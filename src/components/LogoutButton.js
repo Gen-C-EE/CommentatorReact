@@ -10,7 +10,7 @@ const LogoutButton = () => {
       color="inherit"
       onClick={() =>
         logout({
-          returnTo: window.location.pathname,
+          returnTo: window.location.origin,
         })
       }
     >
