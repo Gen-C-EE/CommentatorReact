@@ -138,7 +138,7 @@ const CommentCard = ({comment,rerenderCallback,video}) => {
   chancer.seed(hash(comment.author));
   const avatarHue = chancer.fromArray(hueArray);
   const avatarShade = chancer.fromArray(shadeArray);
-  console.log(comment)
+  //console.log(comment)
   const timestamp = comment.timestamp.split(' ');
   const timestampFormated = `${timestamp[0]}T${timestamp[1]}.000Z`;
   //console.log(avatarShade)
