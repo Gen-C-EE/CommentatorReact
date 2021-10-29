@@ -1,4 +1,6 @@
 const baseUrl="conor.ee-cognizantacademy.com";
+//const baseUrl="localhost:8080";
+
 
 export const  postVideo = async (watchId) => {
     var newVideo = {watchID: watchId}
