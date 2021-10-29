@@ -29,7 +29,7 @@ const Comments = (props) => {
     return (
         Array.isArray(comments)
         ?
-        comments.map(comment => <CommentCard key={ comment.id } comment={ comment } rerenderCallback={props.rerenderCallback} video={props.video}/>).sort((a,b)=> new Date(Date.parse(a.timestamp))> new Date(Date.parse(b.timestamp)) ? -1 : 1 )
+        comments.map(comment => <CommentCard key={ comment.id } comment={ comment } rerenderCallback={props.rerenderCallback} video={props.video}/>).sort((a,b)=> new Date(Date.parse(a.timestamp))> new Date(Date.parse(b.timestamp)) ? -1 : 1 ).reverse()
         :
             <div>error</div>
     );
